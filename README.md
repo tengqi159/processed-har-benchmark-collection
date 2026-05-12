@@ -6,7 +6,7 @@ This repository is the public documentation and release companion for a collecti
 
 - Hugging Face Dataset: https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection
 - GitHub documentation: https://github.com/tengqi159/processed-har-benchmark-collection
-- GitHub release: https://github.com/tengqi159/processed-har-benchmark-collection/releases/tag/v0.1.0
+- GitHub latest release: https://github.com/tengqi159/processed-har-benchmark-collection/releases/latest
 - Archival DOI: pending Zenodo release
 - Optional mirror: not configured
 
