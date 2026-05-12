@@ -89,7 +89,7 @@ The goal is to make HAR model comparison easier by releasing a consistent set of
 ```python
 from datasets import load_dataset
 
-ds = load_dataset("tengqi159/processed-har-benchmark-collection", "uci_har")
+ds = load_dataset("shenjianmozhu/processed-har-benchmark-collection", "uci_har")
 train = ds["train"]
 example = train[0]
 
@@ -120,7 +120,7 @@ from huggingface_hub import hf_hub_download
 import numpy as np
 
 path = hf_hub_download(
-    repo_id="tengqi159/processed-har-benchmark-collection",
+    repo_id="shenjianmozhu/processed-har-benchmark-collection",
     repo_type="dataset",
     filename="arrays/uci_har.npz",
 )
@@ -156,7 +156,7 @@ Please cite this processed collection and the original datasets used in your wor
   title        = {Processed HAR Benchmark Collection},
   author       = {Qi Teng and collaborators},
   year         = {2026},
-  howpublished = {\url{https://huggingface.co/datasets/tengqi159/processed-har-benchmark-collection}},
+  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection}},
   note         = {Version v0.1.0}
 }
 ```

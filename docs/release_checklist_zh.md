@@ -12,7 +12,7 @@ rg "TODO_|TODO_VERIFY" .
 
 正式发布后至少替换：
 
-- `tengqi159/processed-har-benchmark-collection` 中的 `tengqi159`
+- `shenjianmozhu/processed-har-benchmark-collection` 中的 `shenjianmozhu`
 - Zenodo DOI，目前写为 pending
 - 可选镜像链接，目前写为 not configured
 - `v0.1.0`，正式数据齐全后建议升级为 `v1.0.0`
@@ -83,7 +83,7 @@ hf auth login
 然后上传：
 
 ```bash
-scripts/upload_to_hf.sh tengqi159/processed-har-benchmark-collection hf_release
+scripts/upload_to_hf.sh shenjianmozhu/processed-har-benchmark-collection hf_release
 ```
 
 ## 6. 建 GitHub 仓库

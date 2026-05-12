@@ -4,7 +4,7 @@ This page is a lightweight GitHub Pages landing page for the processed HAR bench
 
 ## Download
 
-- Primary dataset host: `https://huggingface.co/datasets/tengqi159/processed-har-benchmark-collection`
+- Primary dataset host: `https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection`
 - Documentation and scripts: `https://github.com/tengqi159/processed-har-benchmark-collection`
 - Versioned DOI archive: pending Zenodo release
 
@@ -17,7 +17,7 @@ The collection contains processed windows for UCI-HAR, UniMiB-SHAR, USC-HAD, FLA
 ```python
 from datasets import load_dataset
 
-ds = load_dataset("tengqi159/processed-har-benchmark-collection", "uci_har")
+ds = load_dataset("shenjianmozhu/processed-har-benchmark-collection", "uci_har")
 print(ds)
 ```
 

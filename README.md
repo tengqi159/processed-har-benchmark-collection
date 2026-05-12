@@ -31,7 +31,7 @@ Use Hugging Face for the data files:
 ```python
 from datasets import load_dataset
 
-uci = load_dataset("tengqi159/processed-har-benchmark-collection", "uci_har")
+uci = load_dataset("shenjianmozhu/processed-har-benchmark-collection", "uci_har")
 print(uci["train"][0].keys())
 ```
 
@@ -41,7 +41,7 @@ For deep-learning pipelines that prefer array files, download the release snapsh
 from huggingface_hub import snapshot_download
 
 local_dir = snapshot_download(
-    repo_id="tengqi159/processed-har-benchmark-collection",
+    repo_id="shenjianmozhu/processed-har-benchmark-collection",
     repo_type="dataset",
     local_dir="har-benchmark-processed",
 )
@@ -136,7 +136,7 @@ If you use this processed collection, cite both this release and the original da
   title        = {Processed HAR Benchmark Collection},
   author       = {Qi Teng and collaborators},
   year         = {2026},
-  howpublished = {\url{https://huggingface.co/datasets/tengqi159/processed-har-benchmark-collection}},
+  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection}},
   note         = {Version v0.1.0}
 }
 ```

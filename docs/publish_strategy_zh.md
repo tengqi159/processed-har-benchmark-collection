@@ -83,7 +83,7 @@ Google Drive / institutional mirror
 
 ```latex
 \paragraph{Data availability.}
-To facilitate reproducible comparison, we release the preprocessed benchmark windows, split files, and metadata used in our experiments at \url{https://huggingface.co/datasets/tengqi159/processed-har-benchmark-collection}. The accompanying documentation and preprocessing utilities are available at \url{https://github.com/tengqi159/processed-har-benchmark-collection}. All datasets are derived from public HAR benchmarks, and users should also cite and comply with the terms of the original dataset sources.
+To facilitate reproducible comparison, we release the preprocessed benchmark windows, split files, and metadata used in our experiments at \url{https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection}. The accompanying documentation and preprocessing utilities are available at \url{https://github.com/tengqi159/processed-har-benchmark-collection}. All datasets are derived from public HAR benchmarks, and users should also cite and comply with the terms of the original dataset sources.
 ```
 
 如果审稿阶段暂时不能完全公开，可以改成：
