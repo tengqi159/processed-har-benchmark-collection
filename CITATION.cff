@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: Processed HAR Benchmark Collection
+message: Please cite this processed release and the original dataset papers.
+type: dataset
+authors:
+  - family-names: Teng
+    given-names: Qi
+    affiliation: Zhengzhou University
+version: v0.1.0
+date-released: 2026-05-12
+url: https://huggingface.co/datasets/tengqi159/processed-har-benchmark-collection
+repository-code: https://github.com/tengqi159/processed-har-benchmark-collection
+doi: pending
+license: other
+keywords:
+  - human activity recognition
+  - wearable sensing
+  - time-series classification
+  - inertial sensors
+  - benchmark

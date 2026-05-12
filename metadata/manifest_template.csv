@@ -1,0 +1,4 @@
+path,bytes,sha256,created_at_utc,notes
+data/uci_har/train.parquet,pending,pending,pending,replace after data export
+data/uci_har/test.parquet,pending,pending,pending,replace after data export
+arrays/uci_har.npz,pending,pending,pending,optional fast training archive

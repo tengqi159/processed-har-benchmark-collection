@@ -1,0 +1,120 @@
+version: v0.1.0
+release_name: Processed HAR Benchmark Collection
+maintainers:
+  - name: Qi Teng and collaborators
+    affiliation: Zhengzhou University
+    email: GitHub issues
+default_layout: channels_first
+datasets:
+  - slug: uci_har
+    display_name: UCI-HAR
+    citation_key: anguita2013public
+    source_url: https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones
+    samples: 10299
+    classes: 6
+    channels: 9
+    timesteps: 128
+    sampling_rate_hz: 50
+    overlap: "50%"
+    split: "70%/30%"
+    sensing_setup: Waist-mounted smartphone accelerometer and gyroscope.
+    release_note: Uses fixed-width windows in the processed benchmark format.
+    redistribution_status: verify_before_upload
+  - slug: unimib_shar
+    display_name: UniMiB-SHAR
+    citation_key: micucci2017unimib
+    source_url: https://arxiv.org/abs/1611.07688
+    samples: 11771
+    classes: 17
+    channels: 3
+    timesteps: 151
+    sampling_rate_hz: 50
+    overlap: "50%"
+    split: "70%/30%"
+    sensing_setup: Trouser-pocket smartphone accelerometer for daily activity and fall recognition.
+    release_note: Verify official dataset download terms before uploading processed files.
+    redistribution_status: verify_before_upload
+  - slug: usc_had
+    display_name: USC-HAD
+    citation_key: zhang2012usc
+    source_url: https://sipi.usc.edu/had/
+    samples: 9873
+    classes: 12
+    channels: 6
+    timesteps: 512
+    sampling_rate_hz: 100
+    overlap: "50%"
+    split: "70%/30%"
+    sensing_setup: MotionNode accelerometer and gyroscope worn at the front right hip.
+    release_note: Verify official dataset terms before uploading processed files.
+    redistribution_status: verify_before_upload
+  - slug: flaap
+    display_name: FLAAP
+    citation_key: kumar2022flaap
+    source_url: https://doi.org/10.1016/j.procs.2022.10.208
+    samples: 13123
+    classes: 10
+    channels: 6
+    timesteps: 100
+    sampling_rate_hz: 100
+    overlap: "0%"
+    split: "80%/20%"
+    sensing_setup: Waist-mounted smartphone accelerometer and gyroscope.
+    release_note: Verify dataset download terms in addition to the open-access article license.
+    redistribution_status: verify_before_upload
+  - slug: hapt
+    display_name: HAPT
+    citation_key: reyes2016transition
+    source_url: https://archive.ics.uci.edu/dataset/341/smartphone+based+recognition+of+human+activities+and+postural+transitions
+    samples: 10908
+    classes: 12
+    channels: 6
+    timesteps: 128
+    sampling_rate_hz: 50
+    overlap: "50%"
+    split: "70%/30%"
+    sensing_setup: Waist-mounted smartphone accelerometer and gyroscope with postural transitions.
+    release_note: Processed count should be checked against the final files before publication.
+    redistribution_status: verify_before_upload
+  - slug: mhealth
+    display_name: mHealth
+    citation_key: banos2014mhealth
+    source_url: https://archive.ics.uci.edu/dataset/319/mhealth+dataset
+    samples: 4818
+    classes: 12
+    channels: 12
+    timesteps: 128
+    sampling_rate_hz: 50
+    overlap: "50%"
+    split: "80%/20%"
+    sensing_setup: Body-worn sensors placed on chest, right wrist, and left ankle; processed release uses selected motion channels.
+    release_note: Document channel selection relative to the original multimodal recording.
+    redistribution_status: verify_before_upload
+  - slug: dsads
+    display_name: DSADS
+    citation_key: altun2010comparative
+    source_url: https://archive.ics.uci.edu/dataset/256/daily+and+sports+activities
+    samples: 9113
+    classes: 19
+    channels: 45
+    timesteps: 125
+    sampling_rate_hz: 25
+    overlap: "0%"
+    split: "75%/25%"
+    sensing_setup: Five inertial sensor units on torso, arms, and legs.
+    release_note: Full processed channel layout should be listed before release.
+    redistribution_status: verify_before_upload
+  - slug: pamap2
+    display_name: PAMAP2
+    citation_key: reiss2012creating
+    source_url: https://archive.ics.uci.edu/dataset/231/pamap2+physical+activity+monitoring
+    samples: 7616
+    classes: 12
+    channels: 40
+    timesteps: 171
+    sampling_rate_hz: 100
+    overlap: "78%"
+    split: "80%/20%"
+    sensing_setup: IMUs on hand, chest, and ankle with heart-rate sensing in the original recording.
+    release_note: Document selected classes, missing-value handling, and selected channels.
+    redistribution_status: verify_before_upload
