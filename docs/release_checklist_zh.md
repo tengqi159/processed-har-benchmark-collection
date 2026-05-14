@@ -12,9 +12,9 @@ rg "TODO_|TODO_VERIFY" .
 
 正式发布后至少替换：
 
-- `shenjianmozhu/processed-har-benchmark-collection` 中的 `shenjianmozhu`
+- `shenjianmozhu/preprocessed-har-datasets` 中的 `shenjianmozhu`
 - Zenodo DOI，目前写为 pending
-- 可选镜像链接，目前写为 not configured
+- 可选 Google Drive 镜像链接，目前写为 pending
 - `v0.1.0`，正式数据齐全后建议升级为 `v1.0.0`
 
 ## 2. 检查原始数据集再分发权限
@@ -33,31 +33,20 @@ metadata/datasets.yaml
 建议整理成：
 
 ```text
-processed_arrays/
-  uci_har/
-    X_train.npy
+datasets/
+  uci/
+    x_train.npy
     y_train.npy
-    X_test.npy
+    x_test.npy
     y_test.npy
-    label_names.txt
-  hapt/
-    X_train.npy
-    y_train.npy
-    X_test.npy
-    y_test.npy
+  unimib/
+    training_data.npy
+    training_labels.npy
+    testing_data.npy
+    testing_labels.npy
 ```
 
-每个 `X_*.npy` 应为三维数组。默认发布脚本假设 `channels_first`，即：
-
-```text
-[num_windows, channels, timesteps]
-```
-
-如果当前数据是 `[num_windows, timesteps, channels]`，运行转换脚本时加：
-
-```bash
---layout timesteps_first
-```
+每个 feature `.npy` 应为三维数组。当前公开文档按原始文件名保留，建议在 manifest 中写清 shape 和 dtype。
 
 ## 4. 转换成 HF release 目录
 
@@ -83,18 +72,18 @@ hf auth login
 然后上传：
 
 ```bash
-scripts/upload_to_hf.sh shenjianmozhu/processed-har-benchmark-collection hf_release
+scripts/upload_to_hf.sh shenjianmozhu/preprocessed-har-datasets hf_release
 ```
 
 ## 6. 建 GitHub 仓库
 
-GitHub 仓库只放当前目录里的文档、脚本和元信息，不放 `hf_release/`、`data/`、`arrays/`。
+GitHub 仓库只放当前目录里的文档、脚本和元信息，不放 `hf_release/`、`datasets/`、`archives/`。
 
 ```bash
 git init
 git add .
 git commit -m "Initial processed HAR benchmark release docs"
-gh repo create processed-har-benchmark-collection --public --source=. --remote=origin --push
+gh repo create preprocessed-har-datasets --public --source=. --remote=origin --push
 ```
 
 ## 7. Zenodo DOI

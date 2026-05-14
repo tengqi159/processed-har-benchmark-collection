@@ -1,90 +1,71 @@
 # Data Format
 
-This document defines the public format for the processed HAR benchmark release.
+This document defines the public format for the ready-to-use preprocessed HAR dataset release.
 
 ## Repository Layout
 
 ```text
-data/{dataset_slug}/{split}.parquet
-arrays/{dataset_slug}.npz
+datasets/{dataset_slug}/*.npy
+archives/*.zip
 metadata/datasets.yaml
 metadata/manifest.csv
 ```
 
-Use the following dataset slugs:
+The current partial release uses these folder slugs:
 
-- `uci_har`
-- `unimib_shar`
-- `usc_had`
-- `flaap`
-- `hapt`
-- `mhealth`
-- `dsads`
+- `uci`
+- `unimib`
 - `pamap2`
+- `wisdm`
+- `oppo`
+- `WSBHA`
 
-## Parquet Schema
+The planned full release can add more folders such as `usc_had`, `flaap`, `hapt`, `mhealth`, and `dsads`.
 
-Each row is one preprocessed window.
+## NumPy Array Convention
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | string | yes | Stable id, e.g. `uci_har_train_000001` |
-| `dataset` | string | yes | Dataset slug |
-| `split` | string | yes | `train`, `validation`, or `test` |
-| `signal` | list<float32> | yes | Flattened sensor window |
-| `channels` | int32 | yes | Number of channels |
-| `timesteps` | int32 | yes | Window length |
-| `layout` | string | yes | `channels_first` or `timesteps_first` |
-| `label` | int32 | yes | Integer class id |
-| `label_name` | string | recommended | Human-readable activity name |
-| `subject` | string | optional | Subject id if release is permitted |
-| `source_window_id` | string | optional | Id from the internal preprocessing pipeline |
-
-## Array Layout
-
-Use `channels_first` by default:
+Each sample array is already windowed and split. Most feature tensors follow:
 
 ```text
-signal.reshape(channels, timesteps)
+num_windows x timesteps x channels
 ```
 
-If your current processed files are `timesteps_first`, either convert them before release or set `layout = "timesteps_first"` consistently:
+The exact shape and dtype of every uploaded file are listed in:
 
 ```text
-signal.reshape(timesteps, channels)
+metadata/partial_upload_2026-05-14_manifest.csv
 ```
 
-Do not mix layouts within one subset.
+For example:
 
-## NPZ Schema
+```python
+from huggingface_hub import hf_hub_download
+import numpy as np
 
-Each `arrays/{dataset_slug}.npz` file should contain:
-
-```text
-X_train
-y_train
-X_test
-y_test
-label_names        # optional
-subject_train      # optional
-subject_test       # optional
+x_path = hf_hub_download(
+    repo_id="shenjianmozhu/preprocessed-har-datasets",
+    repo_type="dataset",
+    filename="datasets/uci/x_train.npy",
+)
+X = np.load(x_path)
+print(X.shape)
 ```
 
-If a validation split exists, add:
+## Recommended Standard Names
 
-```text
-X_val
-y_val
-subject_val        # optional
-```
+When adding new processed datasets, prefer one of these patterns:
+
+- `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy`
+- `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy`
+
+If a dataset has validation files, use explicit names such as `x_val.npy` and `y_val.npy`.
 
 ## Manifest
 
-`metadata/manifest.csv` should include one row per released file:
+`metadata/*manifest.csv` should include one row per released file:
 
 ```text
-path,bytes,sha256,created_at_utc,notes
+relative_path,dataset_dir,file_name,shape,dtype,size_bytes
 ```
 
 The manifest should be regenerated after every data change.
-

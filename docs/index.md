@@ -1,26 +1,31 @@
-# Processed HAR Benchmark Collection
+# Ready-to-Use Preprocessed HAR Datasets
 
-This page is a lightweight GitHub Pages landing page for the processed HAR benchmark release.
+This page is a lightweight GitHub Pages landing page for ready-to-use, preprocessed Human Activity Recognition (HAR) datasets.
 
 ## Download
 
-- Primary dataset host: `https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection`
-- Documentation and scripts: `https://github.com/tengqi159/processed-har-benchmark-collection`
+- Primary dataset host: `https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets`
+- Documentation and scripts: `https://github.com/tengqi159/preprocessed-har-datasets`
+- Google Drive mirror: pending public share link
 - Versioned DOI archive: pending Zenodo release
 
 ## Benchmarks
 
-The collection contains processed windows for UCI-HAR, UniMiB-SHAR, USC-HAD, FLAAP, HAPT, mHealth, DSADS, and PAMAP2. These benchmarks cover smartphone sensing, wearable IMU sensing, daily activities, postural transitions, fall-related motions, and sports-style activities.
+The planned collection contains processed windows for UCI-HAR, UniMiB-SHAR, USC-HAD, FLAAP, HAPT, mHealth, DSADS, and PAMAP2. The current partial data upload contains browsable NumPy folders under `datasets/` for `uci`, `unimib`, `pamap2`, `wisdm`, `oppo`, and `WSBHA`.
 
 ## Quick Start
 
 ```python
-from datasets import load_dataset
+from huggingface_hub import hf_hub_download
 
-ds = load_dataset("shenjianmozhu/processed-har-benchmark-collection", "uci_har")
-print(ds)
+path = hf_hub_download(
+    repo_id="shenjianmozhu/preprocessed-har-datasets",
+    repo_type="dataset",
+    filename="datasets/uci/x_train.npy",
+)
+print(path)
 ```
 
 ## Citation
 
-Please cite both this processed release and the original dataset papers.
+Please cite this processed data release, the original dataset papers, and relevant HAR method papers listed in `docs/citation.md`.

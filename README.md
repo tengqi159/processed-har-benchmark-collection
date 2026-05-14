@@ -1,18 +1,20 @@
-# Processed HAR Benchmark Collection
+# Ready-to-Use Preprocessed HAR Datasets
 
-This repository is the public documentation and release companion for a collection of preprocessed Human Activity Recognition (HAR) benchmark datasets. The actual data files should be hosted in a Hugging Face Dataset repository, while this GitHub repository keeps the documentation, citation metadata, preprocessing notes, and download instructions lightweight and stable.
+This repository is the public documentation and release companion for a set of **ready-to-use, preprocessed Human Activity Recognition (HAR) datasets**. The goal is simple: researchers should be able to download fixed-window train/test arrays and run HAR models directly, without repeating raw-data cleaning, windowing, splitting, or label formatting.
+
+The large data files are hosted on Hugging Face Dataset and mirrored on Google Drive when available. GitHub stays lightweight and keeps the landing page, citation metadata, file layout, and reproducibility notes.
 
 ## Release Links
 
-- Hugging Face Dataset: https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection
-- GitHub documentation: https://github.com/tengqi159/processed-har-benchmark-collection
-- GitHub latest release: https://github.com/tengqi159/processed-har-benchmark-collection/releases/latest
+- Hugging Face Dataset: https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets
+- GitHub documentation: https://github.com/tengqi159/preprocessed-har-datasets
+- GitHub latest release: https://github.com/tengqi159/preprocessed-har-datasets/releases/latest
+- Google Drive mirror: pending public share link
 - Archival DOI: pending Zenodo release
-- Optional mirror: not configured
 
 ## What Is Included
 
-The release provides fixed-window, model-ready versions of eight public HAR benchmarks. Each subset is distributed with consistent train/test split files, labels, and metadata so that researchers can compare HAR models under the same preprocessing and split protocol.
+The planned release covers fixed-window, model-ready versions of eight public HAR benchmarks. The current partial upload contains NumPy arrays for `WSBHA`, `unimib`, `pamap2`, `wisdm`, `oppo`, and `uci`; additional subsets can be added under the same `datasets/<dataset>/` layout.
 
 | Dataset | Samples | Classes | Channels | Timesteps | Sampling Rate | Window Overlap | Split |
 | --- | ---: | ---: | ---: | ---: | --- | --- | --- |
@@ -27,85 +29,74 @@ The release provides fixed-window, model-ready versions of eight public HAR benc
 
 ## Recommended Access
 
-Use Hugging Face for the data files:
+Use Hugging Face for the primary data files. To download one file:
 
 ```python
-from datasets import load_dataset
+from huggingface_hub import hf_hub_download
 
-uci = load_dataset("shenjianmozhu/processed-har-benchmark-collection", "uci_har")
-print(uci["train"][0].keys())
+x_train = hf_hub_download(
+    repo_id="shenjianmozhu/preprocessed-har-datasets",
+    repo_type="dataset",
+    filename="datasets/uci/x_train.npy",
+)
 ```
 
-For deep-learning pipelines that prefer array files, download the release snapshot:
+To download the full Hugging Face snapshot:
 
 ```python
 from huggingface_hub import snapshot_download
 
 local_dir = snapshot_download(
-    repo_id="shenjianmozhu/processed-har-benchmark-collection",
+    repo_id="shenjianmozhu/preprocessed-har-datasets",
     repo_type="dataset",
-    local_dir="har-benchmark-processed",
+    local_dir="preprocessed-har-datasets",
 )
 print(local_dir)
 ```
 
 ## Data Layout
 
-The Hugging Face Dataset repository should use this structure:
+The Hugging Face Dataset repository uses a direct, dataset-first layout:
 
 ```text
 README.md
-data/
-  uci_har/
-    train.parquet
-    test.parquet
-  unimib_shar/
-    train.parquet
-    test.parquet
-  usc_had/
-    train.parquet
-    test.parquet
-  flaap/
-    train.parquet
-    test.parquet
-  hapt/
-    train.parquet
-    test.parquet
-  mhealth/
-    train.parquet
-    test.parquet
-  dsads/
-    train.parquet
-    test.parquet
+datasets/
+  uci/
+    x_train.npy
+    y_train.npy
+    x_test.npy
+    y_test.npy
+  unimib/
+    training_data.npy
+    training_labels.npy
+    testing_data.npy
+    testing_labels.npy
   pamap2/
-    train.parquet
-    test.parquet
-arrays/
-  uci_har.npz
-  unimib_shar.npz
-  usc_had.npz
-  flaap.npz
-  hapt.npz
-  mhealth.npz
-  dsads.npz
-  pamap2.npz
+    train_X_new.npy
+    train_y_new.npy
+    total_pamap2_valtestx.npy
+    total_pamap2_valtesty.npy
+  wisdm/
+    x_train.npy
+    y_train.npy
+    x_test.npy
+    y_test.npy
+  oppo/
+    data_train_one.npy
+    label_train_onehot.npy
+    data_test_one.npy
+    label_test_onehot.npy
+  WSBHA/
+    training_data.npy
+    training_labels.npy
+    testing_data.npy
+    testing_labels.npy
+archives/
+  processed_har_npy_partial_2026-05-14.zip
 metadata/
+  partial_upload_2026-05-14_manifest.csv
   datasets.yaml
-  manifest.csv
 ```
-
-Each Parquet row represents one preprocessed window. The recommended fields are:
-
-- `id`: stable window id
-- `dataset`: dataset slug
-- `split`: `train`, `validation`, or `test`
-- `signal`: flattened sensor window values
-- `channels`: number of sensor channels
-- `timesteps`: window length
-- `layout`: array interpretation, e.g. `channels_first`
-- `label`: integer class id
-- `label_name`: class name when available
-- `subject`: subject id when redistribution terms permit release
 
 See [docs/data_format.md](docs/data_format.md) for the full format contract.
 For the step-by-step publication workflow, see [docs/release_checklist_zh.md](docs/release_checklist_zh.md).
@@ -130,19 +121,19 @@ See [docs/license_and_redistribution_checklist.md](docs/license_and_redistributi
 
 ## Citation
 
-If you use this processed collection, cite both this release and the original dataset papers:
+If you use this processed collection, cite both this data release and the original dataset papers:
 
 ```bibtex
-@misc{har_processed_benchmark_collection_2026,
-  title        = {Processed HAR Benchmark Collection},
-  author       = {Qi Teng and collaborators},
+@misc{teng_preprocessed_har_datasets_2026,
+  title        = {Ready-to-Use Preprocessed HAR Datasets},
+  author       = {Teng, Qi and collaborators},
   year         = {2026},
-  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection}},
-  note         = {Version v0.1.0}
+  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets}},
+  note         = {Preprocessed fixed-window NumPy arrays for HAR benchmarking}
 }
 ```
 
-Original dataset citations are listed in [metadata/datasets.yaml](metadata/datasets.yaml).
+Original dataset citations are listed in [metadata/datasets.yaml](metadata/datasets.yaml). Related HAR method papers from the maintainer's publication line are listed in [docs/citation.md](docs/citation.md).
 
 ## Maintainers
 

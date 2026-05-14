@@ -1,6 +1,6 @@
 # HAR 处理后数据集公开发布策略
 
-结论先说：建议采用 **GitHub 做门面和说明，Hugging Face Dataset 做主数据仓库，Zenodo 做正式版本 DOI，Google Drive/机构网盘只做可选镜像**。
+结论先说：建议采用 **GitHub 做门面和说明，Hugging Face Dataset 做主数据仓库，Zenodo 做正式版本 DOI，Google Drive/机构网盘只做可选镜像**。公开名称统一用 **Ready-to-Use Preprocessed HAR Datasets**，让别人一眼知道这是已经预处理好的 HAR 数据，可以直接下载训练。
 
 ## 为什么不把数据本体放 GitHub
 
@@ -26,10 +26,10 @@ Hugging Face Dataset repo 更适合这个 HAR 场景：
 - 对大数据集有官方推荐结构，例如 Parquet/WebDataset、控制单仓库文件数、控制单文件大小等。
 - 同行复现实验时下载路径更干净，不需要从 Google Drive 手动点链接。
 
-建议格式：
+当前上传的 `.npy` 数据建议采用最直观的下载结构：
 
-- 主格式：`data/{dataset}/{split}.parquet`
-- 快速训练格式：`arrays/{dataset}.npz`
+- 主下载结构：`datasets/{dataset}/*.npy`
+- 一键下载压缩包：`archives/processed_har_npy_partial_2026-05-14.zip`
 - 元信息：`metadata/datasets.yaml` 和 `metadata/manifest.csv`
 
 ## Zenodo 是否需要
@@ -59,8 +59,8 @@ GitHub repo
 
 Hugging Face Dataset repo
   README.md                         # dataset card
-  data/*/*.parquet                  # 主数据
-  arrays/*.npz                      # 可选快速训练包
+  datasets/*/*.npy                  # 可直接训练的 NumPy 数据
+  archives/*.zip                    # 一键下载压缩包
   metadata/*.yaml/csv               # 元信息与校验
 
 Zenodo
@@ -83,7 +83,7 @@ Google Drive / institutional mirror
 
 ```latex
 \paragraph{Data availability.}
-To facilitate reproducible comparison, we release the preprocessed benchmark windows, split files, and metadata used in our experiments at \url{https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection}. The accompanying documentation and preprocessing utilities are available at \url{https://github.com/tengqi159/processed-har-benchmark-collection}. All datasets are derived from public HAR benchmarks, and users should also cite and comply with the terms of the original dataset sources.
+To facilitate reproducible comparison, we release the preprocessed benchmark windows, split files, and metadata used in our experiments at \url{https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets}. The accompanying documentation and preprocessing utilities are available at \url{https://github.com/tengqi159/preprocessed-har-datasets}. All datasets are derived from public HAR benchmarks, and users should also cite and comply with the terms of the original dataset sources.
 ```
 
 如果审稿阶段暂时不能完全公开，可以改成：

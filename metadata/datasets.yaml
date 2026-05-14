@@ -1,5 +1,9 @@
 version: v0.1.0
-release_name: Processed HAR Benchmark Collection
+release_name: Ready-to-Use Preprocessed HAR Datasets
+homepage:
+  huggingface: https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets
+  github: https://github.com/tengqi159/preprocessed-har-datasets
+  google_drive_mirror: pending
 maintainers:
   - name: Qi Teng and collaborators
     affiliation: Zhengzhou University

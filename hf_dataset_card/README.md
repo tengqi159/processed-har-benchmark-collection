@@ -1,9 +1,11 @@
 ---
-pretty_name: Processed HAR Benchmark Collection
+pretty_name: Ready-to-Use Preprocessed HAR Datasets
 license: other
 task_categories:
 - time-series-classification
 tags:
+- preprocessed
+- ready-to-use
 - human-activity-recognition
 - har
 - wearable-sensors
@@ -14,154 +16,102 @@ tags:
 - timeseries
 - benchmark
 - tabular
-configs:
-- config_name: uci_har
-  data_files:
-  - split: train
-    path: data/uci_har/train.parquet
-  - split: test
-    path: data/uci_har/test.parquet
-- config_name: unimib_shar
-  data_files:
-  - split: train
-    path: data/unimib_shar/train.parquet
-  - split: test
-    path: data/unimib_shar/test.parquet
-- config_name: usc_had
-  data_files:
-  - split: train
-    path: data/usc_had/train.parquet
-  - split: test
-    path: data/usc_had/test.parquet
-- config_name: flaap
-  data_files:
-  - split: train
-    path: data/flaap/train.parquet
-  - split: test
-    path: data/flaap/test.parquet
-- config_name: hapt
-  data_files:
-  - split: train
-    path: data/hapt/train.parquet
-  - split: test
-    path: data/hapt/test.parquet
-- config_name: mhealth
-  data_files:
-  - split: train
-    path: data/mhealth/train.parquet
-  - split: test
-    path: data/mhealth/test.parquet
-- config_name: dsads
-  data_files:
-  - split: train
-    path: data/dsads/train.parquet
-  - split: test
-    path: data/dsads/test.parquet
-- config_name: pamap2
-  data_files:
-  - split: train
-    path: data/pamap2/train.parquet
-  - split: test
-    path: data/pamap2/test.parquet
 ---
 
-# Processed HAR Benchmark Collection
+# Ready-to-Use Preprocessed HAR Datasets
 
-This dataset repository provides model-ready, fixed-window versions of eight public Human Activity Recognition (HAR) benchmarks: UCI-HAR, UniMiB-SHAR, USC-HAD, FLAAP, HAPT, mHealth, DSADS, and PAMAP2.
+This dataset repository provides **ready-to-use, preprocessed Human Activity Recognition (HAR) datasets**. The released files are already windowed, split, and stored as NumPy arrays, so users can download them and run model comparisons directly.
 
-The goal is to make HAR model comparison easier by releasing a consistent set of preprocessed windows, split files, labels, and metadata. The collection covers smartphone-based sensing, wearable IMU sensing, daily activities, postural transitions, fall-related motions, and sports-style activities under different sensor layouts and label granularities.
+The goal is to make HAR model comparison easier by releasing a consistent set of preprocessed windows, split files, labels, and metadata. The collection covers smartphone-based sensing, wearable IMU sensing, daily activities, fall-related motions, and multimodal wearable settings under different sensor layouts and label granularities.
 
-## Dataset Subsets
+## Current Dataset Folders
 
-| Config | Dataset | Sensing Setting | Classes | Channels | Timesteps | Sampling Rate |
-| --- | --- | --- | ---: | ---: | ---: | --- |
-| `uci_har` | UCI-HAR | Waist-mounted smartphone accelerometer and gyroscope | 6 | 9 | 128 | 50 Hz |
-| `unimib_shar` | UniMiB-SHAR | Trouser-pocket smartphone accelerometer | 17 | 3 | 151 | 50 Hz |
-| `usc_had` | USC-HAD | MotionNode at the front right hip | 12 | 6 | 512 | 100 Hz |
-| `flaap` | FLAAP | Waist-mounted smartphone accelerometer and gyroscope | 10 | 6 | 100 | 100 Hz |
-| `hapt` | HAPT | Waist-mounted smartphone accelerometer and gyroscope | 12 | 6 | 128 | 50 Hz |
-| `mhealth` | mHealth | Body-worn sensors on chest, right wrist, and left ankle | 12 | 12 | 128 | 50 Hz |
-| `dsads` | DSADS | Five wearable inertial units on torso, arms, and legs | 19 | 45 | 125 | 25 Hz |
-| `pamap2` | PAMAP2 | IMUs on hand, chest, and ankle plus heart-rate sensing | 12 | 40 | 171 | 100 Hz |
+The browsable download layout is:
 
-## Usage
-
-```python
-from datasets import load_dataset
-
-ds = load_dataset("shenjianmozhu/processed-har-benchmark-collection", "uci_har")
-train = ds["train"]
-example = train[0]
-
-signal = example["signal"]
-channels = example["channels"]
-timesteps = example["timesteps"]
-label = example["label"]
+```text
+datasets/
+  uci/
+  unimib/
+  pamap2/
+  wisdm/
+  oppo/
+  WSBHA/
+archives/
+  processed_har_npy_partial_2026-05-14.zip
+metadata/
+  partial_upload_2026-05-14_manifest.csv
 ```
 
-The `signal` field stores a flattened window. Reshape it according to `layout`:
+The `datasets/` folders are intended for direct per-dataset downloads. The `archives/` zip is a convenient one-file mirror of the current uploaded batch.
+
+## Quick Download
 
 ```python
+from huggingface_hub import hf_hub_download, snapshot_download
 import numpy as np
 
-def restore_window(row):
-    x = np.asarray(row["signal"], dtype="float32")
-    if row["layout"] == "channels_first":
-        return x.reshape(row["channels"], row["timesteps"])
-    if row["layout"] == "timesteps_first":
-        return x.reshape(row["timesteps"], row["channels"])
-    raise ValueError(f"Unknown layout: {row['layout']}")
-```
-
-If you prefer NumPy archives:
-
-```python
-from huggingface_hub import hf_hub_download
-import numpy as np
-
-path = hf_hub_download(
-    repo_id="shenjianmozhu/processed-har-benchmark-collection",
+x_train_path = hf_hub_download(
+    repo_id="shenjianmozhu/preprocessed-har-datasets",
     repo_type="dataset",
-    filename="arrays/uci_har.npz",
+    filename="datasets/uci/x_train.npy",
 )
-arr = np.load(path)
-print(arr.files)
+y_train_path = hf_hub_download(
+    repo_id="shenjianmozhu/preprocessed-har-datasets",
+    repo_type="dataset",
+    filename="datasets/uci/y_train.npy",
+)
+
+X_train = np.load(x_train_path)
+y_train = np.load(y_train_path)
+print(X_train.shape, y_train.shape)
 ```
 
-## Data Fields
+To download everything:
 
-- `id`: stable sample identifier
-- `dataset`: subset slug
-- `split`: split name
-- `signal`: flattened sensor window
-- `channels`: number of sensor channels
-- `timesteps`: number of time steps
-- `layout`: `channels_first` or `timesteps_first`
-- `label`: integer label
-- `label_name`: human-readable label, when available
-- `subject`: subject identifier, when redistribution terms permit release
+```python
+local_dir = snapshot_download(
+    repo_id="shenjianmozhu/preprocessed-har-datasets",
+    repo_type="dataset",
+    local_dir="preprocessed-har-datasets",
+)
+```
+
+## Dataset Notes
+
+| Folder | Main files | Notes |
+| --- | --- | --- |
+| `datasets/uci` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` | UCI-HAR-style train/test arrays. |
+| `datasets/unimib` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` | UniMiB-style preprocessed arrays. |
+| `datasets/pamap2` | `train_X_new.npy`, `train_y_new.npy`, `total_pamap2_valtestx.npy`, `total_pamap2_valtesty.npy` | Train plus validation/test batch. |
+| `datasets/wisdm` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` | WISDM-style preprocessed arrays. |
+| `datasets/oppo` | `data_train_one.npy`, `label_train_onehot.npy`, `data_test_one.npy`, `label_test_onehot.npy` | OPPORTUNITY-style arrays with one-hot labels. |
+| `datasets/WSBHA` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` | Current uploaded WSBHA folder, preserved as provided. |
+
+File-level shapes and dtypes are listed in `metadata/partial_upload_2026-05-14_manifest.csv`.
+
+## Google Drive Mirror
+
+A Google Drive mirror can be used as a backup download route for users who prefer browser-based downloads. When public sharing is enabled, the link should be listed here and in the GitHub README as an optional mirror, while Hugging Face remains the canonical dataset host.
+
+## Citation
+
+Please cite this data release, the original datasets, and any relevant HAR method papers.
+
+```bibtex
+@misc{teng_preprocessed_har_datasets_2026,
+  title        = {Ready-to-Use Preprocessed HAR Datasets},
+  author       = {Teng, Qi and collaborators},
+  year         = {2026},
+  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets}},
+  note         = {Preprocessed fixed-window NumPy arrays for HAR benchmarking}
+}
+```
 
 ## Licensing
 
 This repository contains processed versions of public datasets. The original datasets retain their own licenses, citation requirements, and redistribution terms. The `license: other` metadata is intentional because the collection is license-mixed. Users must comply with the terms of each original dataset.
 
 If any source dataset does not permit redistribution of derived/preprocessed files, the corresponding processed files should be removed from this Hugging Face repository and replaced by preprocessing scripts plus links to the original source.
-
-## Citation
-
-Please cite this processed collection and the original datasets used in your work.
-
-```bibtex
-@misc{har_processed_benchmark_collection_2026,
-  title        = {Processed HAR Benchmark Collection},
-  author       = {Qi Teng and collaborators},
-  year         = {2026},
-  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/processed-har-benchmark-collection}},
-  note         = {Version v0.1.0}
-}
-```
-
-Original dataset citation keys: `anguita2013public`, `micucci2017unimib`, `zhang2012usc`, `kumar2022flaap`, `reyes2016transition`, `banos2014mhealth`, `altun2010comparative`, and `reiss2012creating`.
 
 ## Responsible Use
 
