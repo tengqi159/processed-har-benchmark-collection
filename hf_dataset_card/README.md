@@ -91,7 +91,11 @@ File-level shapes and dtypes are listed in `metadata/partial_upload_2026-05-14_m
 
 ## Google Drive Mirror
 
-A Google Drive mirror can be used as a backup download route for users who prefer browser-based downloads. When public sharing is enabled, the link should be listed here and in the GitHub README as an optional mirror, while Hugging Face remains the canonical dataset host.
+A Google Drive mirror is available for users who prefer browser-based downloads:
+
+https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link
+
+Hugging Face remains the canonical dataset host for versioned files and programmatic downloads.
 
 ## Citation
 

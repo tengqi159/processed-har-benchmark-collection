@@ -1,6 +1,12 @@
 # Google Drive Mirror
 
-Google Drive should be treated as an optional mirror, not the canonical dataset host. Hugging Face remains the primary public dataset repository because it supports versioned data repositories, programmatic downloads, dataset metadata, and download statistics.
+Google Drive is an optional browser-download mirror for users who do not want to use the Hugging Face Hub tooling.
+
+Public mirror folder:
+
+https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link
+
+Hugging Face remains the primary public dataset repository because it supports versioned data repositories, programmatic downloads, dataset metadata, and download statistics.
 
 Recommended Drive structure:
 
@@ -11,6 +17,6 @@ Ready-to-Use Preprocessed HAR Datasets/
   README.txt
 ```
 
-Public sharing status: pending.
+Public sharing status: enabled by the maintainer.
 
-After the folder is shared publicly, add the Drive folder link here and to the main README.
+When adding new data, keep the Drive folder names aligned with the Hugging Face `datasets/<dataset>/` layout so users can move between the two download routes without guessing.

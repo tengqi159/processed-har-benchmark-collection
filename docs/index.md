@@ -6,12 +6,12 @@ This page is a lightweight GitHub Pages landing page for ready-to-use, preproces
 
 - Primary dataset host: `https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets`
 - Documentation and scripts: `https://github.com/tengqi159/preprocessed-har-datasets`
-- Google Drive mirror: pending public share link
+- Google Drive mirror: `https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link`
 - Versioned DOI archive: pending Zenodo release
 
 ## Benchmarks
 
-The planned collection contains processed windows for UCI-HAR, UniMiB-SHAR, USC-HAD, FLAAP, HAPT, mHealth, DSADS, and PAMAP2. The current partial data upload contains browsable NumPy folders under `datasets/` for `uci`, `unimib`, `pamap2`, `wisdm`, `oppo`, and `WSBHA`.
+The current public upload contains browsable NumPy folders under `datasets/` for `uci`, `unimib`, `pamap2`, `wisdm`, `oppo`, and `WSBHA`. The broader benchmark documentation also tracks the paper-aligned set of UCI-HAR, UniMiB-SHAR, USC-HAD, FLAAP, HAPT, mHealth, DSADS, and PAMAP2.
 
 ## Quick Start
 

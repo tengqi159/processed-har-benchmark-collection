@@ -14,8 +14,8 @@ rg "TODO_|TODO_VERIFY" .
 
 - `shenjianmozhu/preprocessed-har-datasets` 中的 `shenjianmozhu`
 - Zenodo DOI，目前写为 pending
-- 可选 Google Drive 镜像链接，目前写为 pending
-- `v0.1.0`，正式数据齐全后建议升级为 `v1.0.0`
+- Google Drive 镜像链接已经回填为公开文件夹：`https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link`
+- `v0.1.3`，正式数据齐全后建议升级为 `v1.0.0`
 
 ## 2. 检查原始数据集再分发权限
 

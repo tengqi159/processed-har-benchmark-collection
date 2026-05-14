@@ -1,20 +1,38 @@
 # Ready-to-Use Preprocessed HAR Datasets
 
-This repository is the public documentation and release companion for a set of **ready-to-use, preprocessed Human Activity Recognition (HAR) datasets**. The goal is simple: researchers should be able to download fixed-window train/test arrays and run HAR models directly, without repeating raw-data cleaning, windowing, splitting, or label formatting.
+This repository is the public landing page for **ready-to-use, preprocessed Human Activity Recognition (HAR) datasets**. The data files are already cleaned, windowed, split, and stored as model-ready NumPy arrays, so users can download a dataset folder and run HAR model comparisons directly.
 
-The large data files are hosted on Hugging Face Dataset and mirrored on Google Drive when available. GitHub stays lightweight and keeps the landing page, citation metadata, file layout, and reproducibility notes.
+GitHub keeps the release documentation, citation metadata, file layout, and reproducibility notes. Large dataset files are hosted on Hugging Face and mirrored on Google Drive.
 
-## Release Links
+## Download
 
-- Hugging Face Dataset: https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets
-- GitHub documentation: https://github.com/tengqi159/preprocessed-har-datasets
-- GitHub latest release: https://github.com/tengqi159/preprocessed-har-datasets/releases/latest
-- Google Drive mirror: pending public share link
-- Archival DOI: pending Zenodo release
+| Route | Use it for | Link |
+| --- | --- | --- |
+| Hugging Face Dataset | Primary host, versioned files, scriptable downloads | https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets |
+| Google Drive Mirror | Browser-based backup download | https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link |
+| GitHub | Documentation, citation, metadata, release notes | https://github.com/tengqi159/preprocessed-har-datasets |
+| Latest GitHub Release | Version snapshot of this documentation package | https://github.com/tengqi159/preprocessed-har-datasets/releases/latest |
 
-## What Is Included
+An archival DOI can be added after the full public release is frozen on Zenodo.
 
-The planned release covers fixed-window, model-ready versions of eight public HAR benchmarks. The current partial upload contains NumPy arrays for `WSBHA`, `unimib`, `pamap2`, `wisdm`, `oppo`, and `uci`; additional subsets can be added under the same `datasets/<dataset>/` layout.
+## Current Upload
+
+The current public batch is organized under `datasets/<dataset>/` so each dataset can be downloaded independently.
+
+| Folder | Main files | Notes |
+| --- | --- | --- |
+| `datasets/uci` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` | UCI-HAR-style train/test arrays. |
+| `datasets/unimib` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` | UniMiB-style preprocessed arrays. |
+| `datasets/pamap2` | `train_X_new.npy`, `train_y_new.npy`, `total_pamap2_valtestx.npy`, `total_pamap2_valtesty.npy` | Train plus validation/test batch. |
+| `datasets/wisdm` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` | WISDM-style preprocessed arrays. |
+| `datasets/oppo` | `data_train_one.npy`, `label_train_onehot.npy`, `data_test_one.npy`, `label_test_onehot.npy` | OPPORTUNITY-style arrays with one-hot labels. |
+| `datasets/WSBHA` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` | Preserved with the uploaded folder name. |
+
+File-level shapes, dtypes, and checksums are recorded in the manifest when available.
+
+## Paper-Aligned Benchmark Set
+
+The broader benchmark documentation tracks eight widely used public HAR datasets. Some of these are planned or metadata-only until redistribution terms and processed files are finalized.
 
 | Dataset | Samples | Classes | Channels | Timesteps | Sampling Rate | Window Overlap | Split |
 | --- | ---: | ---: | ---: | ---: | --- | --- | --- |
@@ -27,9 +45,9 @@ The planned release covers fixed-window, model-ready versions of eight public HA
 | DSADS | 9,113 | 19 | 45 | 125 | 25 Hz | 0% | 75%/25% |
 | PAMAP2 | 7,616 | 12 | 40 | 171 | 100 Hz | 78% | 80%/20% |
 
-## Recommended Access
+## Quick Start
 
-Use Hugging Face for the primary data files. To download one file:
+Use Hugging Face for programmatic downloads. To download one file:
 
 ```python
 from huggingface_hub import hf_hub_download
@@ -54,7 +72,9 @@ local_dir = snapshot_download(
 print(local_dir)
 ```
 
-## Data Layout
+Google Drive can be used as a one-click mirror when users prefer browser downloads.
+
+## Repository Layout
 
 The Hugging Face Dataset repository uses a direct, dataset-first layout:
 
@@ -101,7 +121,7 @@ metadata/
 See [docs/data_format.md](docs/data_format.md) for the full format contract.
 For the step-by-step publication workflow, see [docs/release_checklist_zh.md](docs/release_checklist_zh.md).
 
-## What Is Not Included in GitHub
+## GitHub Scope
 
 Do not commit large data files to this repository. GitHub should only host:
 
@@ -111,7 +131,7 @@ Do not commit large data files to this repository. GitHub should only host:
 - checksums or manifests
 - small examples, if needed
 
-The actual dataset files belong in the Hugging Face Dataset repo and, for archival citation, a Zenodo record.
+The actual dataset files belong in the Hugging Face Dataset repo and the Google Drive mirror. A frozen archival copy can later be attached to a Zenodo record.
 
 ## Licensing and Redistribution
 
@@ -121,7 +141,7 @@ See [docs/license_and_redistribution_checklist.md](docs/license_and_redistributi
 
 ## Citation
 
-If you use this processed collection, cite both this data release and the original dataset papers:
+If you use this processed collection, cite this data release, the original dataset papers for the subsets you use, and relevant HAR method papers from the maintainer's publication line.
 
 ```bibtex
 @misc{teng_preprocessed_har_datasets_2026,
@@ -133,7 +153,7 @@ If you use this processed collection, cite both this data release and the origin
 }
 ```
 
-Original dataset citations are listed in [metadata/datasets.yaml](metadata/datasets.yaml). Related HAR method papers from the maintainer's publication line are listed in [docs/citation.md](docs/citation.md).
+Original dataset citations are listed in [metadata/datasets.yaml](metadata/datasets.yaml). Selected related HAR papers, including recent and earlier Qi Teng HAR work, are listed in [docs/citation.md](docs/citation.md).
 
 ## Maintainers
 
