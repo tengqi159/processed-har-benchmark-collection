@@ -1,6 +1,6 @@
 # HAR 处理后数据集公开发布策略
 
-结论先说：建议采用 **GitHub 做门面和说明，Hugging Face Dataset 做主数据仓库，Zenodo 做正式版本 DOI，Google Drive/机构网盘只做可选镜像**。公开名称统一用 **Ready-to-Use Preprocessed HAR Datasets**，让别人一眼知道这是已经预处理好的 HAR 数据，可以直接下载训练。
+结论先说：建议采用 **GitHub 做门面和说明，Hugging Face Dataset 做主数据仓库，Zenodo 做正式版本 DOI，Google Drive/机构网盘只做可选镜像**。公开名称统一用 **ReadyHAR: Ready-to-Use HAR Datasets**，让别人一眼知道这是已经预处理好的 HAR 数据，可以直接下载训练。
 
 ## 为什么不把数据本体放 GitHub
 
@@ -83,7 +83,7 @@ Google Drive / institutional mirror
 
 ```latex
 \paragraph{Data availability.}
-To facilitate reproducible comparison, we release the preprocessed benchmark windows, split files, and metadata used in our experiments at \url{https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets}. The accompanying documentation and preprocessing utilities are available at \url{https://github.com/tengqi159/preprocessed-har-datasets}. All datasets are derived from public HAR benchmarks, and users should also cite and comply with the terms of the original dataset sources.
+To facilitate reproducible comparison, we release the preprocessed benchmark windows, split files, and metadata used in our experiments at \url{https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets}. The accompanying documentation and preprocessing utilities are available at \url{https://github.com/tengqi159/ready-to-use-har-datasets}. All datasets are derived from public HAR benchmarks, and users should also cite and comply with the terms of the original dataset sources.
 ```
 
 如果审稿阶段暂时不能完全公开，可以改成：

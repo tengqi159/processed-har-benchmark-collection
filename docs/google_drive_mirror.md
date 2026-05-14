@@ -11,7 +11,7 @@ Hugging Face remains the primary public dataset repository because it supports v
 Recommended Drive structure:
 
 ```text
-Ready-to-Use Preprocessed HAR Datasets/
+ReadyHAR: Ready-to-Use HAR Datasets/
   processed_har_npy_partial_2026-05-14.zip
   partial_upload_2026-05-14_manifest.csv
   README.txt

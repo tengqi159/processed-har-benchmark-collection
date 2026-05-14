@@ -1,5 +1,5 @@
 ---
-pretty_name: Ready-to-Use Preprocessed HAR Datasets
+pretty_name: "ReadyHAR: Ready-to-Use HAR Datasets"
 license: other
 task_categories:
 - time-series-classification
@@ -18,9 +18,9 @@ tags:
 - tabular
 ---
 
-# Ready-to-Use Preprocessed HAR Datasets
+# ReadyHAR: Ready-to-Use HAR Datasets
 
-This dataset repository provides **ready-to-use, preprocessed Human Activity Recognition (HAR) datasets**. The released files are already windowed, split, and stored as NumPy arrays, so users can download them and run model comparisons directly.
+This dataset repository provides **ready-to-use, preprocessed Human Activity Recognition (HAR) datasets**. The released files are already cleaned, windowed, split, and stored as NumPy arrays, so users can download them and run model comparisons directly.
 
 The goal is to make HAR model comparison easier by releasing a consistent set of preprocessed windows, split files, labels, and metadata. The collection covers smartphone-based sensing, wearable IMU sensing, daily activities, fall-related motions, and multimodal wearable settings under different sensor layouts and label granularities.
 
@@ -99,17 +99,11 @@ Hugging Face remains the canonical dataset host for versioned files and programm
 
 ## Citation
 
-Please cite this data release, the original datasets, and any relevant HAR method papers.
+There is no standalone dataset paper or DOI for this collection yet. Please do not cite an unpublished data-release entry.
 
-```bibtex
-@misc{teng_preprocessed_har_datasets_2026,
-  title        = {Ready-to-Use Preprocessed HAR Datasets},
-  author       = {Teng, Qi and collaborators},
-  year         = {2026},
-  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets}},
-  note         = {Preprocessed fixed-window NumPy arrays for HAR benchmarking}
-}
-```
+If you use these processed files, cite the original dataset paper for each subset you use and cite the relevant Qi Teng HAR papers listed in the GitHub citation file:
+
+https://github.com/tengqi159/ready-to-use-har-datasets/blob/main/docs/citation.md
 
 ## Licensing
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.4 - 2026-05-14
+
+- Rename the public GitHub project identity to "ReadyHAR: Ready-to-Use HAR Datasets".
+- Shorten the README into a simple public landing page with download, current folders, quick load, citation, and licensing.
+- Remove the unpublished data-release BibTeX entry and make citation guidance point only to original dataset papers and real Qi Teng HAR papers.
+
 ## v0.1.3 - 2026-05-14
 
 - Add the public Google Drive mirror folder to README, GitHub Pages docs, metadata, and release notes.
@@ -13,9 +19,9 @@
 
 ## v0.1.1 - 2026-05-14
 
-- Rename public-facing project language to "Ready-to-Use Preprocessed HAR Datasets".
+- Rename public-facing project language to "ReadyHAR: Ready-to-Use HAR Datasets".
 - Document the browsable `datasets/<dataset>/` NumPy layout for direct downloads.
-- Add citation guidance for the processed data release and related HAR papers.
+- Add citation guidance for original dataset papers and related HAR papers.
 - Add Google Drive mirror documentation as an optional backup download route.
 
 ## v0.1.0 - 2026-05-12

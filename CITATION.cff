@@ -1,20 +1,19 @@
 cff-version: 1.2.0
-title: Ready-to-Use Preprocessed HAR Datasets
-message: Please cite this processed release and the original dataset papers.
+title: "ReadyHAR: Ready-to-Use HAR Datasets"
+message: "There is no standalone dataset paper or DOI yet. If you use this collection, cite the original dataset papers and the relevant Qi Teng HAR papers listed in docs/citation.md."
 type: dataset
 authors:
   - family-names: Teng
     given-names: Qi
     affiliation: Zhengzhou University
-version: v0.1.3
+version: v0.1.4
 date-released: 2026-05-14
 url: https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets
-repository-code: https://github.com/tengqi159/preprocessed-har-datasets
-doi: pending
+repository-code: https://github.com/tengqi159/ready-to-use-har-datasets
 license: other
 keywords:
-  - preprocessed HAR dataset
-  - ready-to-use HAR data
+  - ready-to-use HAR datasets
+  - preprocessed human activity recognition datasets
   - human activity recognition
   - wearable sensing
   - time-series classification

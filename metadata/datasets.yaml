@@ -1,8 +1,8 @@
-version: v0.1.3
-release_name: Ready-to-Use Preprocessed HAR Datasets
+version: v0.1.4
+release_name: "ReadyHAR: Ready-to-Use HAR Datasets"
 homepage:
   huggingface: https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets
-  github: https://github.com/tengqi159/preprocessed-har-datasets
+  github: https://github.com/tengqi159/ready-to-use-har-datasets
   google_drive_mirror: https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link
 maintainers:
   - name: Qi Teng and collaborators

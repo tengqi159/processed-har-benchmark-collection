@@ -1,160 +1,61 @@
-# Ready-to-Use Preprocessed HAR Datasets
+# ReadyHAR: Ready-to-Use HAR Datasets
 
-This repository is the public landing page for **ready-to-use, preprocessed Human Activity Recognition (HAR) datasets**. The data files are already cleaned, windowed, split, and stored as model-ready NumPy arrays, so users can download a dataset folder and run HAR model comparisons directly.
-
-GitHub keeps the release documentation, citation metadata, file layout, and reproducibility notes. Large dataset files are hosted on Hugging Face and mirrored on Google Drive.
+ReadyHAR provides preprocessed Human Activity Recognition (HAR) datasets for direct benchmarking. The files are already cleaned, windowed, split, and saved as NumPy arrays, so users can start from train/test tensors instead of repeating raw sensor preprocessing.
 
 ## Download
 
-| Route | Use it for | Link |
-| --- | --- | --- |
-| Hugging Face Dataset | Primary host, versioned files, scriptable downloads | https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets |
-| Google Drive Mirror | Browser-based backup download | https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link |
-| GitHub | Documentation, citation, metadata, release notes | https://github.com/tengqi159/preprocessed-har-datasets |
-| Latest GitHub Release | Version snapshot of this documentation package | https://github.com/tengqi159/preprocessed-har-datasets/releases/latest |
+- Primary data host: https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets
+- Google Drive mirror: https://drive.google.com/drive/folders/1Qe8AQ8S2V4_uBIvC3Pv4WRmv-EPWERjG?usp=drive_link
+- GitHub documentation: https://github.com/tengqi159/ready-to-use-har-datasets
+- Latest GitHub release: https://github.com/tengqi159/ready-to-use-har-datasets/releases/latest
 
-An archival DOI can be added after the full public release is frozen on Zenodo.
+## Current Dataset Folders
 
-## Current Upload
+The current public upload is organized as independent folders under `datasets/`.
 
-The current public batch is organized under `datasets/<dataset>/` so each dataset can be downloaded independently.
+| Folder | Main files |
+| --- | --- |
+| `datasets/uci` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` |
+| `datasets/unimib` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` |
+| `datasets/pamap2` | `train_X_new.npy`, `train_y_new.npy`, `total_pamap2_valtestx.npy`, `total_pamap2_valtesty.npy` |
+| `datasets/wisdm` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` |
+| `datasets/oppo` | `data_train_one.npy`, `label_train_onehot.npy`, `data_test_one.npy`, `label_test_onehot.npy` |
+| `datasets/WSBHA` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` |
 
-| Folder | Main files | Notes |
-| --- | --- | --- |
-| `datasets/uci` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` | UCI-HAR-style train/test arrays. |
-| `datasets/unimib` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` | UniMiB-style preprocessed arrays. |
-| `datasets/pamap2` | `train_X_new.npy`, `train_y_new.npy`, `total_pamap2_valtestx.npy`, `total_pamap2_valtesty.npy` | Train plus validation/test batch. |
-| `datasets/wisdm` | `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy` | WISDM-style preprocessed arrays. |
-| `datasets/oppo` | `data_train_one.npy`, `label_train_onehot.npy`, `data_test_one.npy`, `label_test_onehot.npy` | OPPORTUNITY-style arrays with one-hot labels. |
-| `datasets/WSBHA` | `training_data.npy`, `training_labels.npy`, `testing_data.npy`, `testing_labels.npy` | Preserved with the uploaded folder name. |
+The paper-aligned benchmark metadata also tracks UCI-HAR, UniMiB-SHAR, USC-HAD, FLAAP, HAPT, mHealth, DSADS, and PAMAP2. See [metadata/datasets.yaml](metadata/datasets.yaml) for details.
 
-File-level shapes, dtypes, and checksums are recorded in the manifest when available.
-
-## Paper-Aligned Benchmark Set
-
-The broader benchmark documentation tracks eight widely used public HAR datasets. Some of these are planned or metadata-only until redistribution terms and processed files are finalized.
-
-| Dataset | Samples | Classes | Channels | Timesteps | Sampling Rate | Window Overlap | Split |
-| --- | ---: | ---: | ---: | ---: | --- | --- | --- |
-| UCI-HAR | 10,299 | 6 | 9 | 128 | 50 Hz | 50% | 70%/30% |
-| UniMiB-SHAR | 11,771 | 17 | 3 | 151 | 50 Hz | 50% | 70%/30% |
-| USC-HAD | 9,873 | 12 | 6 | 512 | 100 Hz | 50% | 70%/30% |
-| FLAAP | 13,123 | 10 | 6 | 100 | 100 Hz | 0% | 80%/20% |
-| HAPT | 10,908 | 12 | 6 | 128 | 50 Hz | 50% | 70%/30% |
-| mHealth | 4,818 | 12 | 12 | 128 | 50 Hz | 50% | 80%/20% |
-| DSADS | 9,113 | 19 | 45 | 125 | 25 Hz | 0% | 75%/25% |
-| PAMAP2 | 7,616 | 12 | 40 | 171 | 100 Hz | 78% | 80%/20% |
-
-## Quick Start
-
-Use Hugging Face for programmatic downloads. To download one file:
+## Quick Load
 
 ```python
 from huggingface_hub import hf_hub_download
+import numpy as np
 
-x_train = hf_hub_download(
+x_train_path = hf_hub_download(
     repo_id="shenjianmozhu/preprocessed-har-datasets",
     repo_type="dataset",
     filename="datasets/uci/x_train.npy",
 )
+
+x_train = np.load(x_train_path)
+print(x_train.shape)
 ```
-
-To download the full Hugging Face snapshot:
-
-```python
-from huggingface_hub import snapshot_download
-
-local_dir = snapshot_download(
-    repo_id="shenjianmozhu/preprocessed-har-datasets",
-    repo_type="dataset",
-    local_dir="preprocessed-har-datasets",
-)
-print(local_dir)
-```
-
-Google Drive can be used as a one-click mirror when users prefer browser downloads.
-
-## Repository Layout
-
-The Hugging Face Dataset repository uses a direct, dataset-first layout:
-
-```text
-README.md
-datasets/
-  uci/
-    x_train.npy
-    y_train.npy
-    x_test.npy
-    y_test.npy
-  unimib/
-    training_data.npy
-    training_labels.npy
-    testing_data.npy
-    testing_labels.npy
-  pamap2/
-    train_X_new.npy
-    train_y_new.npy
-    total_pamap2_valtestx.npy
-    total_pamap2_valtesty.npy
-  wisdm/
-    x_train.npy
-    y_train.npy
-    x_test.npy
-    y_test.npy
-  oppo/
-    data_train_one.npy
-    label_train_onehot.npy
-    data_test_one.npy
-    label_test_onehot.npy
-  WSBHA/
-    training_data.npy
-    training_labels.npy
-    testing_data.npy
-    testing_labels.npy
-archives/
-  processed_har_npy_partial_2026-05-14.zip
-metadata/
-  partial_upload_2026-05-14_manifest.csv
-  datasets.yaml
-```
-
-See [docs/data_format.md](docs/data_format.md) for the full format contract.
-For the step-by-step publication workflow, see [docs/release_checklist_zh.md](docs/release_checklist_zh.md).
-
-## GitHub Scope
-
-Do not commit large data files to this repository. GitHub should only host:
-
-- documentation
-- metadata
-- preprocessing and conversion scripts
-- checksums or manifests
-- small examples, if needed
-
-The actual dataset files belong in the Hugging Face Dataset repo and the Google Drive mirror. A frozen archival copy can later be attached to a Zenodo record.
-
-## Licensing and Redistribution
-
-This collection is derived from public datasets created by their original authors. The original datasets retain their own licenses, citation requirements, and redistribution terms. Before uploading processed files, verify that each source permits redistribution of derived/preprocessed data. If a dataset does not clearly permit redistribution, publish only the preprocessing code, metadata, and instructions for users to obtain the raw data from the original source.
-
-See [docs/license_and_redistribution_checklist.md](docs/license_and_redistribution_checklist.md).
 
 ## Citation
 
-If you use this processed collection, cite this data release, the original dataset papers for the subsets you use, and relevant HAR method papers from the maintainer's publication line.
+There is no standalone dataset paper or DOI for this collection yet. Please do not cite an unpublished data-release entry.
 
-```bibtex
-@misc{teng_preprocessed_har_datasets_2026,
-  title        = {Ready-to-Use Preprocessed HAR Datasets},
-  author       = {Teng, Qi and collaborators},
-  year         = {2026},
-  howpublished = {\url{https://huggingface.co/datasets/shenjianmozhu/preprocessed-har-datasets}},
-  note         = {Preprocessed fixed-window NumPy arrays for HAR benchmarking}
-}
-```
+If you use these processed files, cite:
 
-Original dataset citations are listed in [metadata/datasets.yaml](metadata/datasets.yaml). Selected related HAR papers, including recent and earlier Qi Teng HAR work, are listed in [docs/citation.md](docs/citation.md).
+1. the original public dataset paper for each subset you use;
+2. the relevant Qi Teng HAR papers listed in [docs/citation.md](docs/citation.md);
+3. this GitHub/Hugging Face URL only as a repository link in your data-availability statement.
 
-## Maintainers
+For a short default HAR citation set, start with:
 
-- Qi Teng and collaborators. Please use GitHub issues for release questions.
+- Teng et al., *Innovative Dual-Decoupling CNN With Layer-Wise Temporal-Spatial Attention for Sensor-Based Human Activity Recognition*, IEEE JBHI, 2025.
+- Teng et al., *Large Receptive Field Attention: An Innovation in Decomposing Large-Kernel Convolution for Sensor-Based Activity Recognition*, IEEE Sensors Journal, 2024.
+- Teng et al., *RepHAR: Decoupling Networks With Accuracy-Speed Tradeoff for Sensor-Based Human Activity Recognition*, IEEE TIM, 2023.
+
+## Licensing
+
+These files are derived from public HAR datasets. Each original dataset keeps its own license, citation requirements, and redistribution terms. If a source dataset does not allow redistribution of processed files, publish only the preprocessing script and source-data instructions for that subset.
